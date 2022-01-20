@@ -11,6 +11,8 @@ public class Alarm : MonoBehaviour
     private float _targetVolumeValue;
     private bool _isBurglerInside;
 
+    private static float _volumeFadeRate = 0.1f;
+
     private void Start()
     {
         _alarm.volume = 0;
@@ -25,7 +27,7 @@ public class Alarm : MonoBehaviour
 
         while (_alarm.volume < _targetVolumeValue && _isBurglerInside == true )
         {
-            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, 0.1f);
+            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, _volumeFadeRate);
             yield return WaitForOneSecond;
         }
     }
@@ -37,7 +39,7 @@ public class Alarm : MonoBehaviour
 
         while (_alarm.volume > _targetVolumeValue && _isBurglerInside == false )
         {
-            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, 0.1f);
+            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, _volumeFadeRate);
             yield return WaitForOneSecond;
         }
 

@@ -15,8 +15,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D _rigidBody2D;
 
-    public bool IsJumpable { get; private set; }
-    public bool IsMove { get; private set; }
+    private bool _isJumpable;
 
     private void Start()
     {
@@ -45,7 +44,7 @@ public class Movement : MonoBehaviour
             _stopMove.Invoke();
         }
 
-        if (IsJumpable && Input.GetKeyDown(KeyCode.Space))
+        if (_isJumpable && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -53,12 +52,12 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        IsJumpable = true;
+        _isJumpable = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        IsJumpable = false;
+        _isJumpable = false;
     }
 
     private void Jump()

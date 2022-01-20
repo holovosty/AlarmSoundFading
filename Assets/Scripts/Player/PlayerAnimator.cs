@@ -8,11 +8,9 @@ public class PlayerAnimator : MonoBehaviour
 {
     private Animator _animator;
 
-    public static class Stats
-    {
-        public const string IsMove = "IsMove";
-        public const string Hit = "Hit";
-    }
+    private const string _isMove = "IsMove";
+    private const string _hit = "Hit";
+
 
     private void Start()
     {
@@ -21,16 +19,16 @@ public class PlayerAnimator : MonoBehaviour
 
     public void StartMove()
     {
-        _animator.SetBool(Stats.IsMove, true);
+        _animator.SetBool(_isMove, true);
     }
 
     public void StopMove()
     {
-        _animator.SetBool(Stats.IsMove, false);
+        _animator.SetBool(_isMove, false);
     }
 
     public void TakeDamage()
     {
-        _animator.SetTrigger(Stats.Hit);
+        _animator.SetTrigger(_hit);
     }
 }
