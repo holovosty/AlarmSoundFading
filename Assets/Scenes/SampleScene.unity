@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 361641092}
   - component: {fileID: 361641095}
   - component: {fileID: 361641094}
+  - component: {fileID: 361641096}
   m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3b0593dc3ea3e44ba854a535be47be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startAlarm:
+  _burglerCameIn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 361641095}
@@ -666,7 +667,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _stopAlarm:
+  _burglerCameOut:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 361641095}
@@ -804,6 +805,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _alarm: {fileID: 361641094}
+--- !u!61 &361641096
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361641091}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08066416, y: 1.633434}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8386736, y: 4.2668676}
+  m_EdgeRadius: 0
 --- !u!1001 &363525700
 PrefabInstance:
   m_ObjectHideFlags: 0

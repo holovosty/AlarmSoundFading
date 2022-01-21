@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(BoxCollider2D))]
+
 public class BurglerChecker : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _startAlarm;
-    [SerializeField] private UnityEvent _stopAlarm;
+    [SerializeField] private UnityEvent _burglerCameIn;
+    [SerializeField] private UnityEvent _burglerCameOut;
 
-    private RaycastHit2D _hit;
     private bool _isAlarm;
 
-    private void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _hit = Physics2D.Raycast(transform.position, Vector2.up);
-
-        if (_hit.collider.TryGetComponent<Player>(out Player player) && !_isAlarm && Input.GetKey(KeyCode.D))
+        if (collision.TryGetComponent<Player>(out Player player) && !_isAlarm && Input.GetKey(KeyCode.D))
         {
-            _startAlarm.Invoke();
+            _burglerCameIn.Invoke();
             _isAlarm = true;
         }
-        else if (_hit.collider.TryGetComponent<Player>(out player) && _isAlarm && Input.GetKey(KeyCode.A))
+        else if (collision.TryGetComponent<Player>(out player) && _isAlarm && Input.GetKey(KeyCode.A))
         {
-            _stopAlarm.Invoke();
+            _burglerCameOut.Invoke();
             _isAlarm = false;
         }
     }

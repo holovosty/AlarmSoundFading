@@ -6,9 +6,9 @@ public class Alarm : MonoBehaviour
 {
     [SerializeField] private AudioSource _alarm;
 
-    private WaitForSeconds WaitForOneSecond = new WaitForSeconds(1);
+    private WaitForSeconds _waitingTime = new WaitForSeconds(1);
 
-    private float _targetVolumeValue;
+    private float _targetVolume;
     private bool _isBurglerInside;
 
     private static float _volumeFadeRate = 0.1f;
@@ -18,29 +18,29 @@ public class Alarm : MonoBehaviour
         _alarm.volume = 0;
     }
 
-    public IEnumerator AlarmVolumeIncrease()
+    public IEnumerator VolumeIncrease()
     {
         _isBurglerInside = true;
-        _targetVolumeValue = 1;
+        _targetVolume = 1;
 
         _alarm.Play();
 
-        while (_alarm.volume < _targetVolumeValue && _isBurglerInside == true )
+        while (_alarm.volume < _targetVolume && _isBurglerInside == true )
         {
-            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, _volumeFadeRate);
-            yield return WaitForOneSecond;
+            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolume, _volumeFadeRate);
+            yield return _waitingTime;
         }
     }
 
-    public IEnumerator AlarmVolumeDecrease()
+    public IEnumerator VolumeDecrease()
     {
         _isBurglerInside = false;
-        _targetVolumeValue = 0; 
+        _targetVolume = 0; 
 
-        while (_alarm.volume > _targetVolumeValue && _isBurglerInside == false )
+        while (_alarm.volume > _targetVolume && _isBurglerInside == false )
         {
-            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolumeValue, _volumeFadeRate);
-            yield return WaitForOneSecond;
+            _alarm.volume = Mathf.MoveTowards(_alarm.volume, _targetVolume, _volumeFadeRate);
+            yield return _waitingTime;
         }
 
         _alarm.Stop();
@@ -48,11 +48,11 @@ public class Alarm : MonoBehaviour
 
     public void StartAlarm()
     {
-        StartCoroutine(AlarmVolumeIncrease());
+        StartCoroutine(VolumeIncrease());
     }
 
     public void StopAlarm()
     {
-        StartCoroutine(AlarmVolumeDecrease());
+        StartCoroutine(VolumeDecrease());  
     }
 }
