@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class BurglerChecker : MonoBehaviour
+public class EntranceDetector : MonoBehaviour
 {
     [SerializeField] private UnityEvent _burglerCameIn;
     [SerializeField] private UnityEvent _burglerCameOut;

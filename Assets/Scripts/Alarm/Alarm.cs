@@ -18,7 +18,7 @@ public class Alarm : MonoBehaviour
         _alarm.volume = 0;
     }
 
-    public IEnumerator VolumeIncrease()
+    private IEnumerator IncreaseVolume()
     {
         _isBurglerInside = true;
         _targetVolume = 1;
@@ -32,7 +32,7 @@ public class Alarm : MonoBehaviour
         }
     }
 
-    public IEnumerator VolumeDecrease()
+    private IEnumerator DecreaseVolume()
     {
         _isBurglerInside = false;
         _targetVolume = 0; 
@@ -48,11 +48,11 @@ public class Alarm : MonoBehaviour
 
     public void StartAlarm()
     {
-        StartCoroutine(VolumeIncrease());
+        StartCoroutine(IncreaseVolume());
     }
 
     public void StopAlarm()
     {
-        StartCoroutine(VolumeDecrease());  
+        StartCoroutine(DecreaseVolume());  
     }
 }
